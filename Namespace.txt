@@ -1,0 +1,27 @@
+==============================NAMESPACES===================================
+apiVersion: v1
+kind: Namespace
+metadata:
+   name: anshuman
+   labels:
+     name: anshuman
+
+=================================to create a pod=================
+vi pod.yml
+
+
+kind: Pod                              
+apiVersion: v1                    
+metadata:                           
+  name: qspider.pod                  
+spec:                                    
+  containers:                      
+    - name: abcd                     
+      image: ubuntu              
+      command: ["/bin/bash", "-c", "while true; do echo Hi everyone; sleep 5 ; done"]
+  restartPolicy: Never         # Defaults to Always      
+==============================================================================================
+
+$ kubectl config set-context $(kubectl config current-context) --namespace=anshuman
+$ kubectl config view | grep namespace:
+$ kubectl get pods -n anshuman 

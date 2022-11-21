@@ -1,0 +1,84 @@
+				
+
+======================================================RESOURCEQUOTA========================================
+
+apiVersion: v1
+kind: ResourceQuota
+metadata:                                                                  
+   name: myquota
+spec:
+  hard:
+    limits.cpu: "400m"            # mili cpu
+    limits.memory: "400Mi"         # mili memory
+    requests.cpu: "200m"
+    requests.memory: "200Mi"
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: skillrary
+spec:
+  containers:
+  - name: resource
+    image: centos
+    command: ["/bin/bash", "-c", "while true; do echo spider-man; sleep 5 ; done"]
+    resources:                                          
+      requests:
+        memory: "64Mi"
+        cpu: "100m"
+      limits:
+        memory: "128Mi"
+        cpu: "200m"
+
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: deployments
+spec:
+  replicas: 3
+  selector:      
+    matchLabels:
+     objtype: deployment
+  template:
+    metadata:
+      name: testpod8
+      labels:
+        objtype: deployment
+    spec:
+     containers:
+       - name: abc
+         image: ubuntu
+         command: ["/bin/bash", "-c", "while true; do echo batman; sleep 5 ; done"]
+         resources:
+            requests:
+              cpu: "200m"
+
+
+kubectl get deploy
+
+kubectl get rs
+
+kubectl describe rs <rs name>
+
+---------------------------------------------------------------------------------
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: memory.demo
+spec:
+  containers:
+  - name: cont.memory
+    image: nginx
+    resources:
+      limits:
+        memory: "800Mi"
+      requests:
+        memory: "600Mi"
+
+---------------------------------------------------------------------------------
+
+
+

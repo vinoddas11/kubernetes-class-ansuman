@@ -1,0 +1,47 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: skillrary
+  labels:
+    department: developer
+    batch: first
+spec:
+    containers:
+       - name: xyz
+         image: ubuntu
+         command: ["/bin/bash", "-c", "while true; do echo Skillrary; done"]
+
+
+kind: Pod                              
+apiVersion: v1                     
+metadata:                           
+  name: testpod
+  labels:
+    department: tester
+    batch: second                   
+spec:                                    
+  containers:                      
+    - name: abcd                     
+      image: ubuntu              
+      command: ["/bin/bash", "-c", "while true; do echo Hello-DevOps; sleep 5 ; done"]
+  restartPolicy: Never         # Defaults to Always
+
+
+
+kubectl label <object> <object name>  key=value
+
+kubectl label pod anshuman department=devops
+
+				
+					selector
+
+
+kubectl get pods -l department=devops
+kubectl get pods -l department!=devops
+
+kubectl delete pod -l department=devops  --------------> we can delete with the help of label
+
+
+
+
+

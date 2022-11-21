@@ -1,0 +1,82 @@
+To download helm
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+
+To verify the installation use the following command
+which helm
+
+===============================================================================
+Let’s create Our First Helm Chart
+
+
+helm repo add stable https://charts.helm.sh/stable
+ 	
+===============================================================================
+helm commands to list , search and remove 
+
+helm repo list
+
+helm repo remove stable
+
+helm search repo jenkins
+
+helm search repo tomcat
+
+helm search repo apache
+---------------------------------------------------------------------------
+
+commands to show the charts in repo
+
+helm show chart stable/tomcat
+
+helm show chart stable/jenkins
+
+sudo apt install tree
+
+----------------------------------------------------------------------------
+command to install template
+
+helm create helloworld
+
+tree helloworld
+
+rm -Rf helloworld/
+
+-----------------------------------------------------------------------------------
+now we install application
+
+helm install testjenkins stable/jenkins
+
+kubectl get all
+
+helm delete testjenkins
+
+kubectl get all
+
+---------------------------------------------------------------------------------
+
+scheduling the time to create application
+
+helm install --wait --timeout 8s testtomcat stable/tomcat
+
+helm delete testtomcat
+
+----------------------------------------------------------------------------------
+we can edit the existing chart 
+
+helm show values stable/tomcat
+< display service.type >
+
+helm install testchart2 stable/tomcat --set service.type=NodePort
+
+kubectl get all
+<display NodePort >
+
+
+
+
+
+
+
+

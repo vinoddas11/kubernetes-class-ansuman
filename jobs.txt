@@ -1,0 +1,52 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: skillrary
+spec:
+  template:
+    metadata:
+      name: q.spider
+    spec:
+      containers:
+      - name: abc
+        image: centos:7
+        command: ["bin/bash", "-c", "echo Hello-Devils; sleep 5"]
+      restartPolicy: Never
+
+-------------------------------------------------------------------------------------
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: skillrary
+spec:
+  parallelism: 5                          
+  activeDeadlineSeconds: 10  
+  template:
+    metadata:
+      name: j-spider
+    spec:
+      containers:
+      - name: xyz
+        image: centos:7
+        command: ["bin/bash", "-c", "echo Hello World; sleep 20"]
+      restartPolicy: Never
+
+
+-------------------------------------------------------------------------------------
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+ name: skillrary
+spec:
+ schedule: "* * * * *"
+ jobTemplate:
+   spec:
+     template:
+       spec:
+         containers:
+         - image: ubuntu
+           name: momo
+           command: ["/bin/bash", "-c", "echo Happy Independence Day; sleep 5"]
+         restartPolicy: Never

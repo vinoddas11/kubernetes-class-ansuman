@@ -1,0 +1,165 @@
+
+kind: Pod                              
+apiVersion: v1                    
+metadata:                           
+  name: qspider.pod                  
+spec:                                    
+  containers:                      
+    - name: abcd                     
+      image: ubuntu              
+      command: ["/bin/bash", "-c", "while true; do echo Hi everyone; sleep 5 ; done"]
+  restartPolicy: Never         # Defaults to Always
+
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello
+spec:
+  containers:
+  - name: hello
+    image: ubuntu
+    command: ['sh', '-c', 'echo "Hello, Kubernetes!" && sleep 3600']
+    restartPolicy: OnFailure
+
+
+
+
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: banglore
+spec:
+  containers:
+    - name: btm
+      image: httpd
+      command: ["/bin/bash", "-c", "while true; do echo Food is Good; sleep 5 ; done"]
+  restartPolicy: Never         # Defaults to Always
+
+
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: india
+spec:
+  containers:
+    - name: anshuman
+      image: nginx
+      command: ["/bin/bash", "-c", "while true; do echo I am a DevOps engineer ; sleep 5 ; done"]
+  restartPolicy: Never         # Defaults to Always
+
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: devlopement
+spec:
+  containers:
+    - name: operation
+      image: suse
+      command: ["/bin/bash", "-c", "while true; do echo DevOps; sleep 5 ; done"]
+  restartPolicy: Never         # Defaults to Always
+
+
+################################################################################################################
+
+					        Pod with Ports
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: devops
+spec:
+  containers:
+    - name: anshuman
+      image: httpd
+      ports:
+       - containerPort: 80  
+
+##########################################################################################################################
+
+
+                                                 MULTI CONTAINER POD ENVIRONMENT 
+
+
+
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: skillrary
+spec:
+  containers:
+    - name: abcd
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo qspider; sleep 5 ; done"]
+    - name: xyz
+      image: centos
+      command: ["/bin/bash", "-c", "while true; do echo jspider; sleep 5 ; done"]
+
+
+
+
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: skillrary1
+spec:
+  containers:
+    - name: abcd
+      image: nginx
+      command: ["/bin/bash", "-c", "while true; do echo qspider; sleep 5 ; done"]
+    - name: xyz
+      image: httpd
+      command: ["/bin/bash", "-c", "while true; do echo jspider; sleep 5 ; done"]
+
+
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: skillrary2
+spec:
+  containers:
+    - name: abcd
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo qspider; sleep 5 ; done"]
+    - name: xyz
+      image: httpd
+      command: ["/bin/bash", "-c", "while true; do echo jspider; sleep 5 ; done"]
+
+
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: skillrary3
+spec:
+  containers:
+    - name: abcd
+      image: centos
+      command: ["/bin/bash", "-c", "while true; do echo qspider; sleep 5 ; done"]
+    - name: xyz
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo jspider; sleep 5 ; done"]
+
+
+
+-------------------------------------------------------------------------------------------------------------------------
+

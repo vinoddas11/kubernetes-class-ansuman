@@ -1,0 +1,60 @@
+
+
+				volume inside the pod
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume
+spec:
+  containers:
+  - name: abc
+    image: centos
+    command: ["/bin/bash", "-c", "sleep 15000"]
+    volumeMounts:
+      - name: skillrary
+        mountPath: "/tmp/qspider"
+  - name: xyz
+    image: centos
+    command: ["/bin/bash", "-c", "sleep 10000"]
+    volumeMounts:
+      - name: skillrary
+        mountPath: "/tmp/jspider"
+  volumes:
+  - name: skillrary
+    emptyDir: {}
+
+-----------------------------------------------------------------------------------
+
+
+			volume inside the node
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hostpath.demo
+spec:
+  containers:
+  - image: centos
+    name: anshuman
+    command: ["/bin/bash", "-c", "sleep 15000"]
+    volumeMounts:
+    - mountPath: /tmp/momos
+      name: skillrary
+  volumes:
+  - name: skillrary
+    hostPath:
+      path: /tmp/devops
+
+
+---------------------------------------------------------------------------------
+
+
+
+
+
+
+
+

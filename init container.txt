@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: momos
+spec:
+  initContainers:
+  - name: abc
+    image: centos
+    command: ["/bin/sh", "-c", "echo Hello Devils  > /tmp/skillrary/qspider; sleep 30"]
+    volumeMounts:
+      - name: skillrary
+        mountPath: "/tmp/skillrary"
+  containers:
+  - name: xyz
+    image: centos
+    command: ["/bin/bash", "-c", "while true; do echo `cat /tmp/skillrary/qspider`; sleep 5; done"]
+    volumeMounts:
+      - name: skillrary
+        mountPath: "/tmp/devops"
+  volumes:
+  - name: skillrary
+    emptyDir: {}

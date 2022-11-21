@@ -1,0 +1,146 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: tcs
+spec:
+  containers:
+    - name: abc
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo Hello Devils; sleep 5 ; done"]
+    - name: xyz
+      image: httpd
+      ports:
+       - containerPort: 80
+
+
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: tcs
+spec:
+  containers:
+    - name: abc
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo Hi Devils; sleep 5 ; done"]
+    - name: xyz
+      image: nginx
+      ports:
+       - containerPort: 80
+
+-----------------------------------------------------------------------------------
+
+			connection between pods
+
+
+
+Pod-1
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+
+
+Pod-2
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: httpd
+spec:
+  containers:
+  - name: httpd
+    image: httpd
+    ports:
+    - containerPort: 80
+
+-----------------------------------------------------------------------------------
+
+
+					services
+
+
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+   name: anshuman
+spec:
+   replicas: 2
+   selector:
+    matchLabels:
+     name: deployment
+   template:
+     metadata:
+       name: happy
+       labels:
+         name: deployment
+     spec:
+      containers:
+        - name: abcd
+          image: httpd
+          ports:
+          - containerPort: 80
+
+
+
+
+kind: Service    
+apiVersion: v1
+metadata:
+  name: service.demo
+spec:
+  ports:
+    - port: 80         
+      targetPort: 80   
+  selector:
+    name: deployment  
+  type: ClusterIP   
+
+
+					NodePort
+
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: demo-service
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    name: deployment
+  type: NodePort
+
+
+
+
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+   name: anshuman
+spec:
+   replicas: 2
+   selector:
+    matchLabels:
+     name: deployment
+   template:
+     metadata:
+       name: happy
+       labels:
+         name: deployment
+     spec:
+      containers:
+        - name: abcd
+          image: nginx
+          ports:
+          - containerPort: 80
