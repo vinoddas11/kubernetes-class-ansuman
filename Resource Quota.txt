@@ -9,7 +9,7 @@ metadata:
 spec:
   hard:
     limits.cpu: "400m"            # mili cpu
-    limits.memory: "400Mi"         # mili memory
+    limits.memory: "400Mi"         # mb memory
     requests.cpu: "200m"
     requests.memory: "200Mi"
 
